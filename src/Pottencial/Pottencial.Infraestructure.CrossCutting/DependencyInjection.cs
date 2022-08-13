@@ -4,11 +4,6 @@ using Pottencial.Application.Services;
 using Pottencial.Domain.Interfaces.Services;
 using Pottencial.Domain.Services;
 using Pottencial.Infraestructure.Data.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Pottencial.Infraestructure.CrossCutting
 {
