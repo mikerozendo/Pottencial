@@ -29,7 +29,7 @@ public class AuthController : AppBaseController
 
         if (authenticated) return Ok(_jwtGenerator.GerarTokenJWT());
 
-        return NotFound("Informe credências válidas");
+        return NotFound("Informe credências válidas"); 
     }
 
 
