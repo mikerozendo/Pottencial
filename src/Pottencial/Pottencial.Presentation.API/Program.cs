@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Pottencial.Infraestructure.CrossCutting.DependencyInjection;
 using Pottencial.Infraestructure.CrossCutting.JWT;
+using System.Reflection;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,9 +10,16 @@ var builder = WebApplication.CreateBuilder(args);
 JwtConfiguration jwtConfiguration = new();
 
 builder.Services.AddControllers();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(opt =>
+{
+    var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+    opt.IncludeXmlComments(xmlPath);
+});
+
 builder.Services.RegisterServices();
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
