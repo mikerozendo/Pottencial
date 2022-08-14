@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Pottencial.Application.Dtos
+namespace Pottencial.Application.Dtos;
+
+public class BaseViewModel
 {
-    public class BaseViewModel
-    {
-        public long Id { get; set; }
-    }
+    public long Id { get; set; }
 }

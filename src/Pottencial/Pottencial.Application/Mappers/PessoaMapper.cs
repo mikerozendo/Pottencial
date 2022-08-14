@@ -1,18 +1,16 @@
 ﻿using Pottencial.Application.Dtos;
 using Pottencial.Domain.Entities;
 
-namespace Pottencial.Application.Mappers
+namespace Pottencial.Application.Mappers;
+
+public static class PessoaMapper
 {
-    public static class PessoaMapper
+    public static PessoaViewModel ToViewModel(Pessoa domain)
     {
-        public static PessoaViewModel ToViewModel(Pessoa domain)
+        return new()
         {
-            return new()
-            {
-                Idade = domain.Idade,
-                NomeCompleto = String.Concat(domain.Nome, " ", domain.Sobrenome),
-                Id = domain.Id
-            };
-        }
+            NomeCompleto = String.Concat(domain.Nome, " ", domain.Sobrenome),
+            Id = domain.Id
+        };
     }
 }
