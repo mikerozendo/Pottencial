@@ -17,6 +17,10 @@ public class AuthController : AppBaseController
         _jwtGenerator = (IJwtGenerator)GetService(typeof(IJwtGenerator));
     }
 
+    /// <summary>
+    /// Autentifica usuario cadastrado;
+    /// Retorna status de sucesso com token jwt caso a autentificação ocorra com sucesso ou NoFound com mensagem de erro;
+    /// </summary>
     [HttpPost]
     [Route(nameof(Login))]
     public IActionResult Login([FromBody] UsuarioLoginViewModel userLogin)
@@ -29,6 +33,10 @@ public class AuthController : AppBaseController
     }
 
 
+    /// <summary>
+    /// Criação de usuário para posterior login no endpoint api/Auth/Login;
+    /// Retorna o usuário criado com status de sucesso ou status de erro caso alguma das propriedades do DTO sejam nulas;
+    /// </summary>
     [HttpPost]
     [Route(nameof(CriarUsuario))]
     public IActionResult CriarUsuario([FromBody] UsuarioLoginViewModel userLogin)
