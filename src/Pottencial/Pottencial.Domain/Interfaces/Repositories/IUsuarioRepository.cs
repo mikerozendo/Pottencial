@@ -2,7 +2,7 @@
 
 namespace Pottencial.Domain.Interfaces.Repositories;
 
-public interface IBaseRepository<T> where T : Base
+public interface IUsuarioRepository
 {
-    IEnumerable<T> Get();
+    Usuario Login(Usuario usuario);
 }
