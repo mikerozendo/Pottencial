@@ -1,9 +1,8 @@
 ﻿using Pottencial.Application.Dtos;
 
-namespace Pottencial.Application.Interfaces
+namespace Pottencial.Application.Interfaces;
+
+public interface IPessoaAppService
 {
-    public interface IPessoaAppService
-    {
-        IEnumerable<PessoaViewModel> Get();
-    }
+    IEnumerable<PessoaViewModel> Get();
 }
