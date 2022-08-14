@@ -4,5 +4,6 @@ namespace Pottencial.Application.Interfaces;
 
 public interface IUsuarioAppService
 {
-    UsuarioLoginViewModel Login(UsuarioLoginViewModel usuario);
+    bool Login(UsuarioLoginViewModel usuario);
+    UsuarioLoginViewModel CriarUsuario(UsuarioLoginViewModel usuario);
 }

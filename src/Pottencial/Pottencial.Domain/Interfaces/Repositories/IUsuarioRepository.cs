@@ -5,4 +5,5 @@ namespace Pottencial.Domain.Interfaces.Repositories;
 public interface IUsuarioRepository
 {
     Usuario Login(Usuario usuario);
+    Usuario CriarUsuario(Usuario usuario);
 }

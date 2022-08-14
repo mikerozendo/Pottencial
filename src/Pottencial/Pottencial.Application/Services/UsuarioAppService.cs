@@ -13,15 +13,13 @@ public class UsuarioAppService : IUsuarioAppService
         _usuarioService = usuarioService;
     }
 
-    public UsuarioLoginViewModel Login(UsuarioLoginViewModel usuario)
+    public UsuarioLoginViewModel CriarUsuario(UsuarioLoginViewModel usuario)
     {
-        try
-        {
-            return UsuarioMapper.ToViewModel(_usuarioService.Login(UsuarioMapper.ToDomain(usuario)));
-        }
-        catch (ArgumentNullException)
-        {
-            throw;
-        }
+        return UsuarioMapper.ToViewModel(_usuarioService.CriarUsuario(UsuarioMapper.ToDomain(usuario)));
+    }
+
+    public bool Login(UsuarioLoginViewModel usuario)
+    {
+        return _usuarioService.Login(UsuarioMapper.ToDomain(usuario));
     }
 }

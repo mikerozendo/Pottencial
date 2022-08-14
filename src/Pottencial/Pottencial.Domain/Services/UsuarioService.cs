@@ -12,12 +12,16 @@ public class UsuarioService : IUsuarioService
         _usuarioRepository = usuarioRepository;
     }
 
-    public Usuario Login(Usuario usuario)
+    public bool Login(Usuario usuario)
     {
-        if (usuario is null || String.IsNullOrEmpty(usuario.Email) || String.IsNullOrEmpty(usuario.Senha)) 
-            throw new ArgumentNullException("Informe email e senha"); 
+        var user = _usuarioRepository.Login(usuario);
+        if (user is null) return false;
 
+        return true;
+    }
 
-        return _usuarioRepository.Login(usuario);
+    public Usuario CriarUsuario(Usuario usuario)
+    {
+        return _usuarioRepository.CriarUsuario(usuario);
     }
 }

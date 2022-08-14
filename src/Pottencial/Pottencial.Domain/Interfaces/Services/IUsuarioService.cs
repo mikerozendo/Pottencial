@@ -4,5 +4,6 @@ namespace Pottencial.Domain.Interfaces.Services;
 
 public interface IUsuarioService
 {
-    Usuario Login(Usuario usuario);
+    bool Login(Usuario usuario);
+    Usuario CriarUsuario(Usuario usuario);
 }
