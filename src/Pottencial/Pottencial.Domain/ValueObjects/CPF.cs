@@ -1,35 +1,21 @@
-﻿namespace Pottencial.Domain.ValueObjects;
+﻿using Pottencial.Domain.Exceptions;
+
+namespace Pottencial.Domain.ValueObjects;
 
 public class CPF
 {
-    public string Cpf { get; }
+    public string Cpf { get; private set; }
+
     public CPF(string cpf)
     {
         Cpf = cpf;
+        if (!ValidarCPF()) throw new CpfException();
+    }
+
+    private bool ValidarCPF()
+    {
         FormatarCPF();
-    }
-
-    private void FormatarCPF()
-    {
-        if(String.IsNullOrEmpty(Cpf))
-            throw new ArgumentException("Por favor informe um Cpf");
-
-        if (Cpf.Contains("."))
-            Cpf.Replace(".", String.Empty);
-
-        if (Cpf.Contains("-"))
-            Cpf.Replace("-", String.Empty);
-
-        if(Cpf.Length != 11)
-            throw new ArgumentException("Por favor informe um Cpf");
-
-        if(ValidarCPF(Cpf))
-            throw new ArgumentException("Por favor informe um Cpf Válido");
-    }
-
-    private bool ValidarCPF(string cpf)
-    {
-        char[] cpfBase = cpf.ToCharArray();
+        char[] cpfBase = Cpf.ToCharArray();
 
         int primeiroDV, segundoDV, somaDv = 0;
         int multiplicador = 10;
@@ -72,11 +58,32 @@ public class CPF
                 segundoDV == 0 && cpfBase[10] == '0' ||
                 segundoDV == 1 && cpfBase[10] == '0';
             }
-            else return false;
+            
+            return false;
         }
         catch (Exception)
         {
             return false;
         }
+    }
+
+    private void FormatarCPF()
+    {
+        if (String.IsNullOrEmpty(Cpf) || ValidarCaracteresIguais())
+            throw new CpfException();
+
+        if (Cpf.Contains("."))
+            Cpf = Cpf.Replace(".", String.Empty);
+
+        if (Cpf.Contains("-"))
+            Cpf = Cpf.Replace("-", String.Empty);
+    }
+
+    private bool ValidarCaracteresIguais()
+    {
+        var array = Cpf.ToCharArray();
+        string firstItem = array[0].ToString();
+        bool allEqual = array.Skip(1).All(s => string.Equals(firstItem, s.ToString(), StringComparison.InvariantCultureIgnoreCase));
+        return allEqual;
     }
 }
