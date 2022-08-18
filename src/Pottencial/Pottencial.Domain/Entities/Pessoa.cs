@@ -10,10 +10,10 @@ public class Pessoa : Base
     public string Telefone { get; set; }
     public CPF CPF { get; set; }
 
-    //public Pessoa()
-    //{
+    public Pessoa()
+    {
 
-    //}
+    }
 
     public Pessoa(string cpf)
     {
