@@ -13,7 +13,5 @@ public class VendedorController : AppBaseController
     public VendedorController(IServiceProvider serviceProvider) : base(serviceProvider)
     {
         _vendedorAppService = (IVendedorAppService)GetService(typeof(IVendedorAppService));
-    }
-
-    
+    } 
 }
