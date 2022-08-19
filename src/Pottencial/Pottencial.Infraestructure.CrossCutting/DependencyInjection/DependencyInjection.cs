@@ -15,10 +15,16 @@ public static class DependencyInjection
     public static IServiceCollection RegisterServices(this IServiceCollection services)
     {
         services.AddSingleton<IJwtGenerator, JwtGenerator>();
+
         services.AddSingleton<IUsuarioRepository, UsuarioRepository>();
+        services.AddSingleton<IVendedorRepository, VendedorRepository>();
+
+        services.AddScoped<IUsuarioService, UsuarioService>();
+        services.AddScoped<IVendedorService, VendedorService>();
 
         services.AddScoped<IUsuarioAppService, UsuarioAppService>();
-        services.AddScoped<IUsuarioService, UsuarioService>();
+        services.AddScoped<IVendedorAppService, VendedorAppService>();
+
         return services;
     }
 }
