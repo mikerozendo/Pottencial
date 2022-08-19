@@ -27,5 +27,15 @@ namespace Pottencial.Infraestructure.Data.Repositories
         {
             vendedores.Remove(vendedor);
         }
+
+        public Vendedor? ObterPorDocumento(Vendedor vendedor)
+        {
+            return vendedores.FirstOrDefault(x => x.CPF.Cpf == vendedor.CPF.Cpf);
+        }
+
+        public Vendedor Put(Vendedor obj)
+        {
+            return Post(obj);
+        }
     }
 }
