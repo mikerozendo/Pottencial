@@ -37,17 +37,23 @@ public class Venda : Base
 
     private bool ValidaStatusAguardandoPagamento(EnumStatusVenda statusCandidato)
     {
-        return EnumStatusVenda == EnumStatusVenda.AguardandoPagamento && (statusCandidato == EnumStatusVenda.PagamentoAprovado || statusCandidato == EnumStatusVenda.Cancelada);
+        return (EnumStatusVenda == EnumStatusVenda.AguardandoPagamento && 
+                (statusCandidato == EnumStatusVenda.PagamentoAprovado || statusCandidato == EnumStatusVenda.Cancelada)) ||
+                     EnumStatusVenda == statusCandidato;
     }
 
     private bool ValidaStatusPagamentoAprovado(EnumStatusVenda statusCandidato)
     {
-        return EnumStatusVenda == EnumStatusVenda.PagamentoAprovado && (statusCandidato == EnumStatusVenda.EnviadoParaTransportadora || statusCandidato == EnumStatusVenda.Cancelada);
+        return (EnumStatusVenda == EnumStatusVenda.PagamentoAprovado &&
+                (statusCandidato == EnumStatusVenda.EnviadoParaTransportadora || statusCandidato == EnumStatusVenda.Cancelada)) ||
+                    EnumStatusVenda == statusCandidato;
     }
 
     private bool ValidaStatusEnviadoParaTransportadora(EnumStatusVenda statusCandidato)
     {
-        return EnumStatusVenda == EnumStatusVenda.EnviadoParaTransportadora && statusCandidato == EnumStatusVenda.Entregue;
+        return (EnumStatusVenda == EnumStatusVenda.EnviadoParaTransportadora &&
+                 statusCandidato == EnumStatusVenda.Entregue) ||
+                    EnumStatusVenda == statusCandidato;
     }
 
     private void ExceptionHandler()
