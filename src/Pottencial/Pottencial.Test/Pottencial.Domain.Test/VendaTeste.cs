@@ -132,4 +132,62 @@ public class VendaTeste
         //Assert
         Assert.Equal("Entregue", venda.EnumStatusVendaDescription);
     }
+
+
+
+
+    //Testes executados com método específico criado p/ não quebrar a estrutura de modificadores de acesso da classe;
+    //Descomentar testes e método da classe p/ poder validar;
+
+    //[Fact]
+    //public void Testa_Mensagem_Exception_Aguardando_Pagamento()
+    //{
+    //    //Arrange
+    //    Venda venda = new(EnumStatusVenda.AguardandoPagamento);
+
+    //    //Act
+    //    string retorno = venda.Teste_DefiniMensagemException();
+
+    //    //Assert
+    //    Assert.Equal("O status de 'Aguardando Pagamento' só pode dar passo à 'Pagamento Aprovado' ou 'Cancelado'", retorno);
+    //}
+
+    //[Fact]
+    //public void Testa_Mensagem_Exception_Pagamento_Aprovado()
+    //{
+    //    //Arrange
+    //    Venda venda = new(EnumStatusVenda.PagamentoAprovado);
+
+    //    //Act
+    //    string retorno = venda.Teste_DefiniMensagemException();
+
+    //    //Assert
+    //    Assert.Equal("O status de 'Pagamento aprovado' só pode dar passo à 'Enviado para transportadora' ou Cancelado", retorno);
+    //}
+
+    //[Fact]
+    //public void Testa_Mensagem_Exception_Enviado_Para_Transportadora()
+    //{
+    //    //Arrange
+    //    Venda venda = new(EnumStatusVenda.EnviadoParaTransportadora);
+
+    //    //Act
+    //    string retorno = venda.Teste_DefiniMensagemException();
+
+    //    //Assert
+    //    Assert.Equal("O status de 'Enviado para transportadora' só pode dar passo à  'Entregue'", retorno);
+    //}
+
+    //[Fact]
+    //public void Testa_Mensagem_Exception_Indefinido()
+    //{
+    //    //Arrange
+    //    Venda venda = new(EnumStatusVenda.Cancelada);
+
+    //    //Act
+    //    string retorno = venda.Teste_DefiniMensagemException();
+
+    //    //Assert
+    //    Assert.Equal("Essa alteração de status não é permitida", retorno);
+    //}
 }

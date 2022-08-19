@@ -13,6 +13,7 @@ public class Venda : Base
     public Vendedor Vendedor { get; set; }
     public string EnumStatusVendaDescription { get; private set; }
 
+
     public Venda(EnumStatusVenda enumStatusVenda)
     {
         EnumStatusVenda = enumStatusVenda;
@@ -37,7 +38,7 @@ public class Venda : Base
 
     private bool ValidaStatusAguardandoPagamento(EnumStatusVenda statusCandidato)
     {
-        return (EnumStatusVenda == EnumStatusVenda.AguardandoPagamento && 
+        return (EnumStatusVenda == EnumStatusVenda.AguardandoPagamento &&
                 (statusCandidato == EnumStatusVenda.PagamentoAprovado || statusCandidato == EnumStatusVenda.Cancelada)) ||
                      EnumStatusVenda == statusCandidato;
     }
@@ -63,17 +64,22 @@ public class Venda : Base
 
     private string DefiniMensagemException()
     {
-        VendaStatusQValida valida = new();
-
         if (EnumStatusVenda == EnumStatusVenda.AguardandoPagamento)
-            return valida.AguardandoPagamentoValida;
+            return VendaStatusQValida.AguardandoPagamentoValida;
 
         else if (EnumStatusVenda == EnumStatusVenda.EnviadoParaTransportadora)
-            return valida.EnviadoParaTransportadoraValida;
+            return VendaStatusQValida.EnviadoParaTransportadoraValida;
 
         else if (EnumStatusVenda == EnumStatusVenda.PagamentoAprovado)
-            return valida.AguardandoPagamentoValida;
+            return VendaStatusQValida.PagamentoAprovadoValida;
 
-        return String.Empty;
+        return VendaStatusQValida.NaoIdentificado;
     }
+
+    //Método criado p/ fins de teste, visando não comprometer os modificadores de acesso;
+    //Descomentar trecho de código e teste em questão para poder testar;
+    //public string Teste_DefiniMensagemException()
+    //{
+    //    return DefiniMensagemException();
+    //}
 }
