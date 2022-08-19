@@ -7,7 +7,7 @@ namespace Pottencial.Domain.Entities;
 public class Venda : Base
 {
     public DateTime Data { get; set; }
-    public EnumStatusVenda EnumStatusVenda { get; set; }
+    public EnumStatusVenda EnumStatusVenda { get; private set; }
     public Vendedor Vendedor { get; set; }
 
     public Venda(string cpf)

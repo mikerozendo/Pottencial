@@ -1,7 +1,6 @@
-﻿namespace Pottencial.Domain.Exceptions
+﻿namespace Pottencial.Domain.Exceptions;
+
+public class StatusInvalidoException : Exception
 {
-    public class StatusInvalidoException : Exception
-    {
-        public StatusInvalidoException(string message) : base(message){ }
-    }
+    public StatusInvalidoException(string message) : base(message){ }
 }
