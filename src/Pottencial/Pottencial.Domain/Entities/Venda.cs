@@ -1,4 +1,5 @@
-﻿using Pottencial.Domain.Enums;
+﻿using Pottencial.Domain.Entities.Utils;
+using Pottencial.Domain.Enums;
 using Pottencial.Domain.Exceptions;
 using Pottencial.Domain.ValueObjects;
 
@@ -8,21 +9,30 @@ public class Venda : Base
 {
     public DateTime Data { get; set; }
     public EnumStatusVenda EnumStatusVenda { get; private set; }
-    public PedidoItem PedidoItem { get; set; } 
+    public PedidoItem PedidoItem { get; set; }
     public Vendedor Vendedor { get; set; }
+    public string EnumStatusVendaDescription { get; private set; }
 
     public Venda(EnumStatusVenda enumStatusVenda)
     {
         EnumStatusVenda = enumStatusVenda;
+        DefiniEnumStatusDescricao();
+    }
+
+    private void DefiniEnumStatusDescricao()
+    {
+        EnumStatusVendaDescription = BaseEnum<EnumStatusVenda>.GetDescription(EnumStatusVenda);
     }
 
     public void AlterarStatusVendaBuilder(EnumStatusVenda statusCandidato)
     {
         if (ValidaStatusAguardandoPagamento(statusCandidato) || ValidaStatusPagamentoAprovado(statusCandidato) || ValidaStatusEnviadoParaTransportadora(statusCandidato))
+        {
             EnumStatusVenda = statusCandidato;
+            DefiniEnumStatusDescricao();
+        }
 
-        else 
-            ExceptionHandler();
+        else ExceptionHandler();
     }
 
     private bool ValidaStatusAguardandoPagamento(EnumStatusVenda statusCandidato)

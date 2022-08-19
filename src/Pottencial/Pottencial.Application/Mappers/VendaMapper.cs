@@ -29,4 +29,25 @@ public static class VendaMapper
             }
         };
     }
+
+
+    public static VendaViewModel ToViewModel(Venda domain)
+    {
+        return new()
+        {
+            Data = Convert.ToDateTime(domain.Data),
+            Frete = domain.PedidoItem.Frete,
+            Produto = domain.PedidoItem.Item.Produto,
+            ProdutoPreco = domain.PedidoItem.Item.Valor,
+            ProdutoQuantiade = domain.PedidoItem.Quantidade,
+            StatusId = (int)domain.EnumStatusVenda,
+            ValorTotal = domain.PedidoItem.ValorTotal,
+            VendedorNome = domain.Vendedor.Nome,
+            VendedorCPF = domain.Vendedor.CPF.Cpf,
+            VendedorEmail = domain.Vendedor.Email,
+            VendedorTelefone = domain.Vendedor.Telefone,
+            VendedorId = domain.Vendedor.Id,
+            StatusDescricao = domain.EnumStatusVendaDescription,        
+        };
+    }
 }
