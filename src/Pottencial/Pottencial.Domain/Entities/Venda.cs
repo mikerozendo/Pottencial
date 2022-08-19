@@ -8,11 +8,12 @@ public class Venda : Base
 {
     public DateTime Data { get; set; }
     public EnumStatusVenda EnumStatusVenda { get; private set; }
+    public PedidoItem PedidoItem { get; set; } 
     public Vendedor Vendedor { get; set; }
 
-    public Venda(string cpf)
+    public Venda(EnumStatusVenda enumStatusVenda)
     {
-        Vendedor = new(cpf);
+        EnumStatusVenda = enumStatusVenda;
     }
 
     public void AlterarStatusVendaBuilder(EnumStatusVenda statusCandidato)
