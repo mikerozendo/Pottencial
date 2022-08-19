@@ -7,19 +7,23 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Pottencial.Infraestructure"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Pottencial.Domain", "Pottencial.Domain", "{E901CB45-7554-4E8C-A555-4A45A90C5F17}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pottencial.Domain", "Pottencial.Domain\Pottencial.Domain.csproj", "{C42B12DF-F8B7-4566-9F1A-F791375430B1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pottencial.Domain", "Pottencial.Domain\Pottencial.Domain.csproj", "{C42B12DF-F8B7-4566-9F1A-F791375430B1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Pottencial.Application", "Pottencial.Application", "{26B3DDA5-E78A-444B-B269-1CBFF7241AF4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pottencial.Application", "Pottencial.Application\Pottencial.Application.csproj", "{9774A42F-CD09-4FD4-BF4B-324FA3852B6B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pottencial.Application", "Pottencial.Application\Pottencial.Application.csproj", "{9774A42F-CD09-4FD4-BF4B-324FA3852B6B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Pottencial.Presentation", "Pottencial.Presentation", "{E4D0462D-FA3C-47F7-A722-03EC2AE91755}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pottencial.Presentation.API", "Pottencial.Presentation.API\Pottencial.Presentation.API.csproj", "{CACBFE18-09D7-4A84-B81F-E0D3875C73F6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pottencial.Presentation.API", "Pottencial.Presentation.API\Pottencial.Presentation.API.csproj", "{CACBFE18-09D7-4A84-B81F-E0D3875C73F6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pottencial.Infraestructure.CrossCutting", "Pottencial.Infraestructure.CrossCutting\Pottencial.Infraestructure.CrossCutting.csproj", "{24B96854-9BE4-48EA-B51F-0D628A753AE6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pottencial.Infraestructure.CrossCutting", "Pottencial.Infraestructure.CrossCutting\Pottencial.Infraestructure.CrossCutting.csproj", "{24B96854-9BE4-48EA-B51F-0D628A753AE6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pottencial.Infraestructure.Data", "Pottencial.Infraestructure.Data\Pottencial.Infraestructure.Data.csproj", "{26648B07-AA2B-4B6C-AC64-9CBF09F91185}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pottencial.Infraestructure.Data", "Pottencial.Infraestructure.Data\Pottencial.Infraestructure.Data.csproj", "{26648B07-AA2B-4B6C-AC64-9CBF09F91185}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Pottencial.Test", "Pottencial.Test", "{AAE1F566-76FD-497F-A8EC-8D7DC294D865}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pottencial.Test", "Pottencial.Test\Pottencial.Test.csproj", "{CE034042-72BE-4A46-BC66-7F14BDE3E36D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,6 +51,10 @@ Global
 		{26648B07-AA2B-4B6C-AC64-9CBF09F91185}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{26648B07-AA2B-4B6C-AC64-9CBF09F91185}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{26648B07-AA2B-4B6C-AC64-9CBF09F91185}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE034042-72BE-4A46-BC66-7F14BDE3E36D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE034042-72BE-4A46-BC66-7F14BDE3E36D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE034042-72BE-4A46-BC66-7F14BDE3E36D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE034042-72BE-4A46-BC66-7F14BDE3E36D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -57,6 +65,7 @@ Global
 		{CACBFE18-09D7-4A84-B81F-E0D3875C73F6} = {E4D0462D-FA3C-47F7-A722-03EC2AE91755}
 		{24B96854-9BE4-48EA-B51F-0D628A753AE6} = {0935C8CA-7207-4BEC-B743-A06B85A79F72}
 		{26648B07-AA2B-4B6C-AC64-9CBF09F91185} = {0935C8CA-7207-4BEC-B743-A06B85A79F72}
+		{CE034042-72BE-4A46-BC66-7F14BDE3E36D} = {AAE1F566-76FD-497F-A8EC-8D7DC294D865}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D6EA74EC-78D5-40E3-A389-A1A9F151A168}
