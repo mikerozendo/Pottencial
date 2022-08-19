@@ -14,12 +14,9 @@ public static class DependencyInjection
 {
     public static IServiceCollection RegisterServices(this IServiceCollection services)
     {
-        services.AddSingleton<IPessoaRepository, PessoaRepository>();
         services.AddSingleton<IJwtGenerator, JwtGenerator>();
         services.AddSingleton<IUsuarioRepository, UsuarioRepository>();
 
-        services.AddScoped<IPessoaService, PessoaService>();
-        services.AddScoped<IPessoaAppService, PessoaAppService>();
         services.AddScoped<IUsuarioAppService, UsuarioAppService>();
         services.AddScoped<IUsuarioService, UsuarioService>();
         return services;
