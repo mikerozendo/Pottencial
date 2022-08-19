@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Pottencial.Domain.Entities;
 
-namespace Pottencial.Domain.Interfaces.Services
+namespace Pottencial.Domain.Interfaces.Services;
+
+public interface IVendedorService
 {
-    public interface IVendedorService
-    {
-
-    }
+    IEnumerable<Vendedor> Get();
+    Vendedor Post(Vendedor vendedor);
+    Vendedor Put(Vendedor vendedor);
+    void Delete(Vendedor vendedor);
 }

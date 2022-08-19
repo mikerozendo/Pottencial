@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Pottencial.Application.Dtos;
 
 namespace Pottencial.Application.Interfaces;
 
 public interface IVendedorAppService
 {
-    
-
+    IEnumerable<VendedorViewModel> Get();
+    VendedorViewModel Post(VendedorViewModel vendedor);
+    VendedorViewModel Put(VendedorViewModel vendedor);
+    void Delete(VendedorViewModel vendedor);
 }
