@@ -5,7 +5,6 @@ namespace Pottencial.Domain.Entities;
 
 public class Usuario : Pessoa
 {
-    public string Email { get; set; }
     public string Senha { get; private set; }
 
     public Usuario(string email, string senha)
