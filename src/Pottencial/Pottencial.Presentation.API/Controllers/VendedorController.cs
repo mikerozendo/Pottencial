@@ -16,8 +16,8 @@ public class VendedorController : AppBaseController
         _vendedorAppService = (IVendedorAppService)GetService(typeof(IVendedorAppService));
     }
 
-
     [HttpGet]
+    [Produces("application/json")]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
@@ -31,7 +31,16 @@ public class VendedorController : AppBaseController
         return Ok(list);
     }
 
+    /// <summary>
+    ///     Cria um vendedor na base de dados
+    /// </summary>
+    /// <param name="vendedor"></param>
+    /// <returns>O Vendedor cadastrado</returns>
+    /// <response code="201">Retorna o vendedor criado</response>
+    /// <response code="400">Mensagem de erro específica, o CPF do vendedor deve ser Válido, o DV do mesmo é calculado.</response>
+    /// <response code="401">Usuário não esta autenticado no sistema</response>
     [HttpPost]
+    [Produces("application/json")]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
@@ -49,6 +58,7 @@ public class VendedorController : AppBaseController
     }
 
     [HttpPut]
+    [Produces("application/json")]
     [ProducesResponseType(StatusCodes.Status202Accepted)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
@@ -66,8 +76,8 @@ public class VendedorController : AppBaseController
     }
 
     [HttpDelete]
+    [Produces("application/json")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
-    [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     public IActionResult Delete([FromBody] VendedorViewModel vendedor)
     {
