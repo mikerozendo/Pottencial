@@ -30,12 +30,25 @@ public class VendaController : AppBaseController
     }
 
     [HttpGet]
-    public IActionResult Get([FromQuery]int pagina = 1)
+    public IActionResult Get([FromQuery] int pagina = 1)
     {
         var list = _vendaAppService.Get(pagina);
 
         if (list.Vendas.Any()) return Ok(list);
 
         return NoContent();
+    }
+
+    [HttpPatch("{id}")]
+    public IActionResult AlterarStatusVenda([FromRoute] int id, [FromQuery] int statusAlteracao)
+    {
+        try
+        {
+           return Accepted(nameof(AlterarStatusVenda), _vendaAppService.AlterarStatusVenda(id, statusAlteracao));
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
     }
 }

@@ -4,5 +4,5 @@ namespace Pottencial.Domain.Interfaces.Repositories;
 
 public interface IBaseGetRepository<T> where T : Base
 {
-    IEnumerable<T> Get();
+    IEnumerable<T> Get(int id = 0);
 }

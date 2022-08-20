@@ -2,11 +2,6 @@
 using Pottencial.Application.Interfaces;
 using Pottencial.Application.Mappers;
 using Pottencial.Domain.Interfaces.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Pottencial.Application.Utils;
 
 namespace Pottencial.Application.Services;
@@ -17,6 +12,18 @@ public class VendaAppService : IVendaAppService
     public VendaAppService(IVendaService vendaService)
     {
         _vendaService = vendaService;
+    }
+
+    public VendaViewModel AlterarStatusVenda(int idVenda, int statusAlteracao)
+    {
+        try
+        {
+            return VendaMapper.ToViewModel(_vendaService.AlterarStatusVenda(idVenda, statusAlteracao));
+        }
+        catch (Exception)
+        {
+            throw;
+        }
     }
 
     public PaginacaoVendaViewModel Get(int pagina)
