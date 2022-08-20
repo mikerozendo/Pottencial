@@ -6,5 +6,6 @@ public interface IVendaAppService
 {
     VendaViewModel Post(VendaViewModel viewModel);
     PaginacaoVendaViewModel Get(int pagina);
+    VendaViewModel? GetByid(int id);
     VendaViewModel AlterarStatusVenda(int idVenda, int statusAlteracao);
 }

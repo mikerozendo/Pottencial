@@ -16,6 +16,26 @@ public class VendaController : AppBaseController
         _vendaAppService = (IVendaAppService)GetService(typeof(IVendaAppService));
     }
 
+    [HttpGet]
+    public IActionResult Get([FromQuery] int pagina = 1)
+    {
+        var list = _vendaAppService.Get(pagina);
+
+        if (list.Vendas.Any()) return Ok(list);
+
+        return NoContent();
+    }
+
+    [HttpGet("{id}")]
+    public IActionResult GetById([FromRoute] int id)
+    {
+        var venda = _vendaAppService.GetByid(id);
+
+        if (venda is null) return NotFound();
+
+        return Ok(venda);
+    }
+
     [HttpPost]
     public IActionResult Post([FromBody] VendaViewModel viewModel)
     {
@@ -27,16 +47,6 @@ public class VendaController : AppBaseController
         {
             return BadRequest(ex.Message);
         }
-    }
-
-    [HttpGet]
-    public IActionResult Get([FromQuery] int pagina = 1)
-    {
-        var list = _vendaAppService.Get(pagina);
-
-        if (list.Vendas.Any()) return Ok(list);
-
-        return NoContent();
     }
 
     [HttpPatch("{id}")]

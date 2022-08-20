@@ -45,6 +45,15 @@ public class VendaAppService : IVendaAppService
         return vendas;
     }
 
+    public VendaViewModel? GetByid(int id)
+    {
+        var venda = _vendaService.GetById(id);
+
+        if (venda is null) return null;
+
+        return VendaMapper.ToViewModel(venda);
+    }
+
     public VendaViewModel Post(VendaViewModel viewModel)
     {
         return VendaMapper.ToViewModel(_vendaService.Post(VendaMapper.ToDomain(viewModel)));
