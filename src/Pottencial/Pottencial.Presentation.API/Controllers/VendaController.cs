@@ -9,6 +9,7 @@ namespace Pottencial.Presentation.API.Controllers;
 [Authorize]
 [ApiController]
 [Route("api/[controller]")]
+[Produces("application/json")]
 public class VendaController : AppBaseController
 {
     private readonly IVendaAppService _vendaAppService;
@@ -27,7 +28,6 @@ public class VendaController : AppBaseController
     /// <response code="204">Não possui nenhum registro na base</response>
     /// <response code="401">Usuario não autenticado</response>
     [HttpGet]
-    [Produces("application/json")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     public IActionResult Get([FromQuery] int? pagina = 1)
@@ -88,7 +88,6 @@ public class VendaController : AppBaseController
     /// <response code="400">Indica possível falha no cadastro do vendedor</response>
     /// <response code="401">Usuario não autenticado</response>
     [HttpPost]
-    [Produces("application/json")]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
@@ -123,7 +122,6 @@ public class VendaController : AppBaseController
     /// <response code="400">Indica mensagem de falha específica na alteração do recurso</response>
     /// <response code="401">Usuario não autenticado</response>
     [HttpPatch("{id}")]
-    [Produces("application/json")]
     [ProducesResponseType(StatusCodes.Status202Accepted)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
