@@ -20,14 +20,13 @@ public class VendaRepository : IVendaRepository
         return obj;
     }
 
-    public Venda Put(Venda obj)
+    public int ObterQuantidade()
     {
-        throw new NotImplementedException();
+        return vendas.Count;
     }
 
-    public void RemovePorId(int id)
+    public void Remove(Venda obj)
     {
-        //Usando remove all por conta da possibilidade de aplicar um lambda;
-        vendas.RemoveAll(x => x.Id == id);
+        vendas.RemoveAll(x => x.Id == obj.Id);
     }
 }

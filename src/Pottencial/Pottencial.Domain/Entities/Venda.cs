@@ -8,6 +8,7 @@ namespace Pottencial.Domain.Entities;
 public class Venda : Base
 {
     public DateTime Data { get; set; }
+    public DateTime UltimaAlteracao { get; set; }
     public EnumStatusVenda EnumStatusVenda { get; private set; }
     public PedidoItem PedidoItem { get; set; }
     public Vendedor Vendedor { get; set; }
@@ -30,6 +31,7 @@ public class Venda : Base
         if (ValidaStatusAguardandoPagamento(statusCandidato) || ValidaStatusPagamentoAprovado(statusCandidato) || ValidaStatusEnviadoParaTransportadora(statusCandidato))
         {
             EnumStatusVenda = statusCandidato;
+            UltimaAlteracao = DateTime.Now;
             DefiniEnumStatusDescricao();
         }
 

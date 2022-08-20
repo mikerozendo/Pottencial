@@ -2,7 +2,8 @@
 
 namespace Pottencial.Domain.Interfaces.Repositories;
 
-public interface IBaseGetRepository<T> where T : Base
+public interface IBaseQueryRepository<T> where T : Base
 {
     IEnumerable<T> Get(int id = 0);
+    int ObterQuantidade();
 }

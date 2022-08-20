@@ -18,12 +18,15 @@ public static class DependencyInjection
 
         services.AddSingleton<IUsuarioRepository, UsuarioRepository>();
         services.AddSingleton<IVendedorRepository, VendedorRepository>();
+        services.AddSingleton<IVendaRepository, VendaRepository>();
 
         services.AddScoped<IUsuarioService, UsuarioService>();
         services.AddScoped<IVendedorService, VendedorService>();
+        services.AddScoped<IVendaService, VendaService>();
 
         services.AddScoped<IUsuarioAppService, UsuarioAppService>();
         services.AddScoped<IVendedorAppService, VendedorAppService>();
+        services.AddScoped<IVendaAppService, VendaAppService>();
 
         return services;
     }

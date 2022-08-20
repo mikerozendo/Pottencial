@@ -3,11 +3,11 @@
 namespace Pottencial.Application.Utils;
 public class Paginador<T>
 {
-    public int QuantidadeMaximaItens => 50;
+    public int QuantidadeMaximaItens => 10;
 
     public int ObterQuantidadePaginas(IEnumerable<T> listagem)
     {
-        if (listagem.Count() <= 50) return 1;
+        if (listagem.Count() <= QuantidadeMaximaItens) return 1;
 
         int quantiadeItens = ObterQuantidadeItens(listagem);
         decimal quociente = ObterQuocientePaginas(quantiadeItens, QuantidadeMaximaItens);
