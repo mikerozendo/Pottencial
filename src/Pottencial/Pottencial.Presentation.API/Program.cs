@@ -12,7 +12,6 @@ JwtConfiguration jwtConfiguration = new();
 
 builder.Services.AddControllers();
 
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
@@ -72,6 +71,16 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
              ValidIssuer = jwtConfiguration.Issuer,
              ValidAudience = jwtConfiguration.Audience,
              IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtConfiguration.Key))
+         };
+         options.Events = new JwtBearerEvents
+         {
+             OnChallenge = async context =>
+             {
+                 context.HandleResponse();
+                 context.Response.StatusCode = 401;
+                 context.Response.Headers.Append("authentication", "failed");
+                 await context.Response.WriteAsync($"Por favor se autentifique em api/Auth/");
+             }
          };
      });
 
