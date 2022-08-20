@@ -9,6 +9,7 @@ namespace Pottencial.Presentation.API.Controllers;
 [Authorize]
 [ApiController]
 [Route("api/[controller]")]
+[Produces("application/json")]
 public class VendedorController : AppBaseController
 {
     private readonly IVendedorAppService _vendedorAppService;
@@ -20,16 +21,15 @@ public class VendedorController : AppBaseController
     /// <summary>
     ///    Retorna base de dados paginada
     /// </summary>
-    /// <param name="pagina">opcional</param>
-    /// <param name="cpf">opcional</param>
-    /// <param name="id">opcional</param>
+    /// <param name="pagina">opcional, se não informado retorna a primeira página presente na base, limite de 10 registros por página</param>
+    /// <param name="cpf">opcional, se informado retorna vendedor com aquele cpf</param>
+    /// <param name="id">Se informado retorna vendedor com aquele id</param>
     /// <returns>Retorna listagem paginada de dados da base, onde cada pagina contém no máximo 10 itens</returns>
     /// <returns>Vendedor pelo Id caso parametro seja utilizado</returns>
     /// <response code="201">Retorna paginação da base, se o perametro não for passado, o sistema retorna a primeira página, 
     ///     se a página requisitada for maior do que a quantidade contida no sitema; também é retornada a primeira página</response>
     /// <response code="204">Não possui nenhum registro na base</response>
     [HttpGet]
-    [Produces("application/json")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
@@ -45,13 +45,22 @@ public class VendedorController : AppBaseController
     /// <summary>
     ///     Cria um vendedor na base de dados
     /// </summary>
+    /// <remarks>
+    ///      Exemplo:
+    ///      POST
+    ///         {
+    ///             "nome": "michael",
+    ///             "email": "mikerozendo@gmail.com",
+    ///             "telefone": "11949126483",
+    ///             "cpf": "CPF VALIDO COM OU SEM CARACTERES",
+    ///         }
+    /// </remarks>
     /// <param name="vendedor"></param>
-    /// <returns>O Vendedor cadastrado</returns>
+    /// <returns>Vendedor cadastrado na base</returns>
     /// <response code="201">Retorna o vendedor criado</response>
     /// <response code="400">Cpf inválido ou vendedor já esta cadastrado na base</response>
     /// <response code="401">Usuário não esta autenticado no sistema</response>
     [HttpPost]
-    [Produces("application/json")]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
@@ -81,7 +90,6 @@ public class VendedorController : AppBaseController
     /// <response code="400">Cpf inválido ou vendedor já esta cadastrado na base</response>
     /// <response code="401">Usuário não esta autenticado no sistema</response>
     [HttpPut]
-    [Produces("application/json")]
     [ProducesResponseType(StatusCodes.Status202Accepted)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
@@ -111,7 +119,6 @@ public class VendedorController : AppBaseController
     /// <response code="401">Usuário não esta autenticado no sistema</response>
     /// <response code="404">Vendedor não cadastrado no sistema</response>
     [HttpDelete("{id}")]
-    [Produces("application/json")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     public IActionResult Delete([FromRoute] int id)
@@ -124,6 +131,6 @@ public class VendedorController : AppBaseController
             return NoContent();
         }
 
-        return NotFound(new ErrorViewModel(404, "Você esta tentenado deletar um vendedor não cadastro no sistema"));
+        return NotFound(new ErrorViewModel(404, "Você esta tentando deletar um vendedor não cadastrado no sistema"));
     }
 }

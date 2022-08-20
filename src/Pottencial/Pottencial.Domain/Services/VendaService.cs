@@ -54,8 +54,16 @@ public class VendaService : IVendaService
     {
         var vendedorExistente = _vendedorService.ObterPorDocumento(venda.Vendedor);
 
+        //evitando duplicidade de dados em memória
+
         if (vendedorExistente is null)
+        {
             _vendedorService.Post(venda.Vendedor);
+        }
+        else
+        {
+            venda.Vendedor = vendedorExistente;
+        }
 
         venda.Id = _vendaRepository.ObterQuantidade() + 1;
 
