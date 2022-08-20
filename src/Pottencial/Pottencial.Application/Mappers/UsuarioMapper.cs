@@ -10,7 +10,6 @@ public static class UsuarioMapper
         return new()
         {
             Email = domain.Email,
-            Senha = domain.Senha
         };
     }
 
