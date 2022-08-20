@@ -58,7 +58,7 @@ public class VendedorAppService : IVendedorAppService
 
         if (_vendedorService.ObterPorDocumento(domainEntity) is not null)
         {
-            return new VendedorPutSucessoViewModel(201, "Sucesso")
+            return new VendedorPutSucessoViewModel(202, "Alteração aceita!")
             {
                 VendedorAlterado = VendedorMapper.ToViewModel(_vendedorService.Put(domainEntity))
             };
