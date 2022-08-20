@@ -37,11 +37,17 @@ public class VendedorAppService : IVendedorAppService
         return vendedores;
     }
 
-    public VendedorViewModel? Post(VendedorViewModel vendedor)
+    public object Post(VendedorViewModel vendedor)
     {
         var domainEntity = VendedorMapper.ToDomain(vendedor);
 
-        if (_vendedorService.ObterPorDocumento(domainEntity) is not null) return null;
+        if (_vendedorService.ObterPorDocumento(domainEntity) is not null)
+        {
+            return new VendedorErrorViewModel(400, "Você esta tentando cadastrar um vendedor já existente na base")
+            {
+                RecursoExistente = VendedorMapper.ToViewModel(domainEntity)
+            };
+        }
 
         return VendedorMapper.ToViewModel(_vendedorService.Post(domainEntity));
     }
@@ -52,14 +58,6 @@ public class VendedorAppService : IVendedorAppService
         if (_vendedorService.ObterPorDocumento(domainEntity) is not null) return null;
 
         return VendedorMapper.ToViewModel(_vendedorService.Put(domainEntity));
-    }
-
-    public VendedorErrorViewModel RetornaVendedorJaExistente(VendedorViewModel vendedor)
-    {
-        return new(400, "Você esta tentando cadastrar um vendedor já existente na base")
-        {
-            RecursoExistente = vendedor
-        };
     }
 
     public void Delete(int idVendedor)

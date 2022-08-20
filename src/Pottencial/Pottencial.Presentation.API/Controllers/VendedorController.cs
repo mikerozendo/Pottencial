@@ -58,11 +58,12 @@ public class VendedorController : AppBaseController
     {
         try
         {
-            var created = _vendedorAppService.Post(vendedor);
+            var resource = _vendedorAppService.Post(vendedor);
 
-            if (created is not null) return Created(nameof(Post), created);
+            if(resource.GetType().Equals(typeof(VendedorErrorViewModel))) return BadRequest(resource);
 
-            return BadRequest(_vendedorAppService.RetornaVendedorJaExistente(vendedor));
+            return Created(nameof(Post), resource);
+
         }
         catch (Exception ex)
         {
