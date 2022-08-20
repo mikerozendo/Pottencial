@@ -7,9 +7,11 @@ namespace Pottencial.Infraestructure.Data.Repositories
     {
         private List<Vendedor> vendedores { get; set; } = new();
 
-        public IEnumerable<Vendedor> Get()
+        public IEnumerable<Vendedor> Get(int id = 0)
         {
-            return vendedores;
+            if (id == 0) return vendedores;
+
+            return vendedores.Where(x => x.Id == id);
         }
 
         public Vendedor Post(Vendedor vendedor)
@@ -26,6 +28,16 @@ namespace Pottencial.Infraestructure.Data.Repositories
         public void Remove(Vendedor vendedor)
         {
             vendedores.Remove(vendedor);
+        }
+
+        public Vendedor? ObterPorDocumento(Vendedor vendedor)
+        {
+            return vendedores.FirstOrDefault(x => x.CPF.Cpf == vendedor.CPF.Cpf);
+        }
+
+        public Vendedor Put(Vendedor obj)
+        {
+            return Post(obj);
         }
     }
 }

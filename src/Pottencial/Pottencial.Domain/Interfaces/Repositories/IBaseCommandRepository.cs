@@ -2,7 +2,8 @@
 
 namespace Pottencial.Domain.Interfaces.Repositories;
 
-public interface IBaseRepository<T> where T : Base
+public interface IBaseCommandRepository<T> where T : Base
 {
-    IEnumerable<T> Get();
+    T Post(T obj);
+    T Put(T obj);
 }

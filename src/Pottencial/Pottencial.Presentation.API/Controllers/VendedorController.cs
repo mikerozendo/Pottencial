@@ -19,14 +19,12 @@ public class VendedorController : AppBaseController
     [HttpGet]
     public IActionResult Get()
     {
-        try
-        {
-            return Ok(_vendedorAppService.Get());
-        }
-        catch (Exception)
-        {
+        var list = _vendedorAppService.Get().ToList();
+
+        if (list.Count == 0) 
             return NoContent();
-        }
+
+        return Ok(list);
     }
 
     [HttpPost]

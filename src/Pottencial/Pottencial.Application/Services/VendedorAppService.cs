@@ -17,7 +17,7 @@ public class VendedorAppService : IVendedorAppService
     {
         var vendedores = _vendedorService.Get();
 
-        if (vendedores is null) throw new Exception();
+        if (vendedores is null) return new List<VendedorViewModel>();
 
         return vendedores.Select(VendedorMapper.ToViewModel).ToList();
     }

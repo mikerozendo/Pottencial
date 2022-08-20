@@ -8,7 +8,7 @@ public class CPF_Teste
     [Fact]
     public void FormatarCPF_Exception_Teste()
     {
-        CPF cpf = new("");
+        //CPF cpf = new("");
 
         //Assert.Throws<CpfException>(() => cpf.FormatarCPF());
     }

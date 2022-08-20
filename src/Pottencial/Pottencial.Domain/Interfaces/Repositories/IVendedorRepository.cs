@@ -2,10 +2,9 @@
 
 namespace Pottencial.Domain.Interfaces.Repositories;
 
-public interface IVendedorRepository
+public interface IVendedorRepository : IBaseGetRepository<Vendedor>, IBaseCommandRepository<Vendedor>
 {
-    IEnumerable<Vendedor> Get(); 
-    Vendedor Post(Vendedor vendedor);
     int ObterQuantiadeVendedores();
     void Remove(Vendedor vendedor);
+    Vendedor? ObterPorDocumento(Vendedor vendedor);
 }
