@@ -37,7 +37,7 @@ public class AuthController : AppBaseController
 
         if (authenticated) return Ok(_jwtGenerator.GerarTokenJWT());
 
-        return NotFound(new ErrorViewModel(404, "Informe credências válidas")); 
+        return NotFound(new ErrorViewModel(404, "Informe credênciais válidas")); 
     }
 
 
@@ -57,7 +57,7 @@ public class AuthController : AppBaseController
     {
         var user = _usuarioAppService.CriarUsuario(userLogin);
 
-        if (user is null) return BadRequest(new ErrorViewModel(400,"E-mail ou senha são obrigatórios"));
+        if (user is null) return BadRequest(new ErrorViewModel(400,"E-mail e senha são obrigatórios"));
 
         return Created(nameof(CriarUsuario),user);
     }
