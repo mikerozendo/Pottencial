@@ -29,7 +29,7 @@ public class VendaService : IVendaService
                 if (Enum.IsDefined((EnumStatusVenda)statusAlteracao))
                 {
                     venda.AlterarStatusVendaBuilder((EnumStatusVenda)statusAlteracao);
-                    _vendaRepository.RemovePorId(venda.Id);
+                    _vendaRepository.Remove(venda);//internamente removendo a venda pelo id da mesma;
                     _vendaRepository.Post(venda);
                     return venda;
                 }
@@ -60,10 +60,5 @@ public class VendaService : IVendaService
         venda.Id = _vendaRepository.ObterQuantidade() + 1;
 
         return _vendaRepository.Post(venda);
-    }
-
-    public Venda Put(Venda obj)
-    {
-        throw new NotImplementedException();
     }
 }

@@ -19,7 +19,7 @@ public class VendedorService : IVendedorService
 
     public Vendedor Post(Vendedor vendedor)
     {
-        vendedor.Id = _vendedorRepository.ObterQuantiadeVendedores() + 1;
+        vendedor.Id = _vendedorRepository.ObterQuantidade() + 1;
 
         return _vendedorRepository.Post(vendedor);
     }
