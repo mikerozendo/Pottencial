@@ -21,14 +21,15 @@ public class VendedorAppService : IVendedorAppService
         if (list is null) return new();
 
         var helper = new Paginador<VendedorViewModel>();
+        int quantidadPaginas = helper.ObterQuantidadePaginas(list);
 
         var vendedores = new PaginacaoVendedoresViewModel()
         {
             QuantidadePaginas = helper.ObterQuantidadePaginas(list),
-            Pagina = pagina,
+            Pagina = quantidadPaginas < pagina ? 0 : 1,
             Vendedores = list
                     .Where(x => String.IsNullOrEmpty(cpf) || x.Cpf.Contains(cpf))
-                    .Skip(pagina == 1 ? 0 : pagina * helper.QuantidadeMaximaItens)
+                    .Skip((pagina == 1 || quantidadPaginas < pagina) ? 0 : (pagina - 1) * helper.QuantidadeMaximaItens)
                     .Take(helper.QuantidadeMaximaItens)
                     .ToList()
         };

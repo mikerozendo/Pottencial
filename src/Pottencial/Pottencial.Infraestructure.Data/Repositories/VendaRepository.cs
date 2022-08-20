@@ -30,4 +30,9 @@ public class VendaRepository : IVendaRepository
         //Usando remove all por conta da possibilidade de aplicar um lambda;
         vendas.RemoveAll(x => x.Id == id);
     }
+
+    public int ObterQuantidade()
+    {
+        return vendas.Count;
+    }
 }

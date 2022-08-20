@@ -17,14 +17,16 @@ public class VendedorController : AppBaseController
     }
 
     /// <summary>
-    ///     Obtem uma lista filtrável de vendedores cadastrados na base
+    ///    Retorna base de dados paginada
     /// </summary>
-    /// <param name="cpf"></param>
-    /// <param name="id"></param>
-    /// <param name="pagina"></param>
-    /// <returns>Lista filtrada de vendedores</returns>
-    /// <response code="201">Lista filtrada de vendedores</response>
-    /// <response code="204">Não há registros na base ou não há registro no filtro em específico</response>
+    /// <param name="pagina">opcional</param>
+    /// <param name="cpf">opcional</param>
+    /// <param name="id">opcional</param>
+    /// <returns>Retorna listagem paginada de dados da base, onde cada pagina contém no máximo 10 itens</returns>
+    /// <returns>Vendedor pelo Id caso parametro seja utilizado</returns>
+    /// <response code="201">Retorna paginação da base, se o perametro não for passado, o sistema retorna a primeira página, 
+    ///     se a página requisitada for maior do que a quantidade contida no sitema; também é retornada a primeira página</response>
+    /// <response code="204">Não possui nenhum registro na base</response>
     [HttpGet]
     [Produces("application/json")]
     [ProducesResponseType(StatusCodes.Status200OK)]

@@ -59,6 +59,7 @@ public class VendaTeste
 
         //Assert
         Assert.Equal(venda.EnumStatusVenda, candidato);
+        Assert.Equal(venda.UltimaAlteracao.Date, DateTime.Now.Date);
     }
 
     [Theory]
@@ -75,6 +76,7 @@ public class VendaTeste
 
         //Assert
         Assert.Equal(venda.EnumStatusVenda, candidato);
+        Assert.Equal(venda.UltimaAlteracao.Date, DateTime.Now.Date);
     }
 
     [Theory]
@@ -90,6 +92,7 @@ public class VendaTeste
 
         //Assert
         Assert.Equal(venda.EnumStatusVenda, candidato);
+        Assert.Equal(venda.UltimaAlteracao.Date, DateTime.Now.Date);
     }
 
     [Fact]

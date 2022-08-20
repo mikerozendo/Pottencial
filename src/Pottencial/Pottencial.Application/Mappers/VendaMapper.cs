@@ -17,29 +17,22 @@ public static class VendaMapper
                 Telefone = viewModel.VendedorTelefone ?? "",
                 Email = viewModel.VendedorEmail ?? ""
             },
-            PedidoItem = new()
-            {
-                Frete = viewModel.Frete ?? 0,
-                Item = new()
-                {
-                    Produto = viewModel.Produto,
-                    Valor = viewModel.ProdutoPreco
-                },
-                Quantidade = viewModel.ProdutoQuantiade,
-            }
+            PedidoItem = new(viewModel.ProdutoId, viewModel.ProdutoPreco, viewModel.ProdutoQuantidade, Convert.ToDecimal(viewModel.Frete)),
         };
     }
-
 
     public static VendaViewModel ToViewModel(Venda domain)
     {
         return new()
         {
+            Id = domain.Id,
             Data = Convert.ToDateTime(domain.Data),
+            UltimaAlteracao = domain.UltimaAlteracao,
             Frete = domain.PedidoItem.Frete,
             Produto = domain.PedidoItem.Item.Produto,
             ProdutoPreco = domain.PedidoItem.Item.Valor,
-            ProdutoQuantiade = domain.PedidoItem.Quantidade,
+            ProdutoId = (int)domain.PedidoItem.Item.EnumTipoProduto,
+            ProdutoQuantidade = domain.PedidoItem.Quantidade,
             StatusId = (int)domain.EnumStatusVenda,
             ValorTotal = domain.PedidoItem.ValorTotal,
             VendedorNome = domain.Vendedor.Nome,

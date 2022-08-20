@@ -2,11 +2,8 @@
 
 namespace Pottencial.Domain.Interfaces.Services;
 
-public interface IVendedorService
+public interface IVendedorService : IBaseService<Vendedor>
 {
-    IEnumerable<Vendedor> Get(int id = 0);
-    Vendedor Post(Vendedor vendedor);
-    Vendedor Put(Vendedor vendedor);
     Vendedor? ObterPorDocumento(Vendedor vendedor);
     void Delete(int idVendedor);
 }

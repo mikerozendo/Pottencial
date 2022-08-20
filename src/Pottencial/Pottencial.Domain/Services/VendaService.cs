@@ -45,14 +45,9 @@ public class VendaService : IVendaService
         }
     }
 
-    public IEnumerable<Venda> Get()
+    public IEnumerable<Venda> Get(int id = 0)
     {
-        return _vendaRepository.Get();
-    }
-
-    public Venda GetById(int id)
-    {
-        return _vendaRepository.Get(id).FirstOrDefault();
+        return _vendaRepository.Get(id);
     }
 
     public Venda Post(Venda venda)
@@ -62,6 +57,13 @@ public class VendaService : IVendaService
         if (vendedorExistente is null)
             _vendedorService.Post(venda.Vendedor);
 
+        venda.Id = _vendaRepository.ObterQuantidade() + 1;
+
         return _vendaRepository.Post(venda);
+    }
+
+    public Venda Put(Venda obj)
+    {
+        throw new NotImplementedException();
     }
 }
