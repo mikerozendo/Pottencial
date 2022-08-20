@@ -4,8 +4,9 @@ namespace Pottencial.Application.Interfaces;
 
 public interface IVendedorAppService
 {
-    IEnumerable<VendedorViewModel> Get();
-    VendedorViewModel Post(VendedorViewModel vendedor);
-    VendedorViewModel Put(VendedorViewModel vendedor);
-    void Delete(VendedorViewModel vendedor);
+    PaginacaoVendedoresViewModel Get(string cpf = "", int id = 0, int pagina = 1);
+    VendedorViewModel? Post(VendedorViewModel vendedor);
+    VendedorViewModel? Put(VendedorViewModel vendedor);
+    void Delete(int idVendedor);
+    VendedorErrorViewModel RetornaVendedorJaExistente(VendedorViewModel vendedor);
 }

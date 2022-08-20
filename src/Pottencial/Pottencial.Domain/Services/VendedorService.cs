@@ -12,9 +12,9 @@ public class VendedorService : IVendedorService
         _vendedorRepository = vendedorRepository;
     }
 
-    public IEnumerable<Vendedor> Get()
+    public IEnumerable<Vendedor> Get(int id = 0)
     {
-        return _vendedorRepository.Get();
+        return _vendedorRepository.Get(id);
     }
 
     public Vendedor Post(Vendedor vendedor)
@@ -26,14 +26,24 @@ public class VendedorService : IVendedorService
 
     public Vendedor Put(Vendedor vendedor)
     {
-        _vendedorRepository.Remove(vendedor);
+        var existente = _vendedorRepository.ObterPorDocumento(vendedor);
 
-        return _vendedorRepository.Post(vendedor);
+        if (existente is not null)
+        {
+            vendedor.Id = existente.Id;
+
+            _vendedorRepository.Remove(existente);
+        }
+
+        return Post(vendedor);
     }
 
-    public void Delete(Vendedor vendedor)
+    public void Delete(int idVendedor)
     {
-        _vendedorRepository.Remove(vendedor);
+        var vendedor = _vendedorRepository.Get(idVendedor).FirstOrDefault();
+
+        if (vendedor is not null)
+            _vendedorRepository.Remove(vendedor);
     }
 
     public Vendedor? ObterPorDocumento(Vendedor vendedor)

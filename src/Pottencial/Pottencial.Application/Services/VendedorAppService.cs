@@ -1,6 +1,7 @@
 ﻿using Pottencial.Application.Dtos;
 using Pottencial.Application.Interfaces;
 using Pottencial.Application.Mappers;
+using Pottencial.Application.Utils;
 using Pottencial.Domain.Interfaces.Services;
 
 namespace Pottencial.Application.Services;
@@ -13,27 +14,55 @@ public class VendedorAppService : IVendedorAppService
         _vendedorService = vendedorService;
     }
 
-    public IEnumerable<VendedorViewModel> Get()
+    public PaginacaoVendedoresViewModel Get(string cpf = "", int id = 0, int pagina = 1)
     {
-        var vendedores = _vendedorService.Get();
+        var list = _vendedorService.Get(id).Select(VendedorMapper.ToViewModel);
 
-        if (vendedores is null) return new List<VendedorViewModel>();
+        if (list is null) return new();
 
-        return vendedores.Select(VendedorMapper.ToViewModel).ToList();
+        var helper = new Paginador<VendedorViewModel>();
+
+        var vendedores = new PaginacaoVendedoresViewModel()
+        {
+            QuantidadePaginas = helper.ObterQuantidadePaginas(list),
+            Pagina = pagina,
+            Vendedores = list
+                    .Where(x => String.IsNullOrEmpty(cpf) || x.Cpf.Contains(cpf))
+                    .Skip(pagina == 1 ? 0 : pagina * helper.QuantidadeMaximaItens)
+                    .Take(helper.QuantidadeMaximaItens)
+                    .ToList()
+        };
+
+        return vendedores;
     }
 
-    public VendedorViewModel Post(VendedorViewModel vendedor)
+    public VendedorViewModel? Post(VendedorViewModel vendedor)
     {
-        return VendedorMapper.ToViewModel(_vendedorService.Post(VendedorMapper.ToDomain(vendedor)));
+        var domainEntity = VendedorMapper.ToDomain(vendedor);
+
+        if (_vendedorService.ObterPorDocumento(domainEntity) is not null) return null;
+
+        return VendedorMapper.ToViewModel(_vendedorService.Post(domainEntity));
     }
 
-    public VendedorViewModel Put(VendedorViewModel vendedor)
+    public VendedorViewModel? Put(VendedorViewModel vendedor)
     {
-        return VendedorMapper.ToViewModel(_vendedorService.Put(VendedorMapper.ToDomain(vendedor)));
+        var domainEntity = VendedorMapper.ToDomain(vendedor);
+        if (_vendedorService.ObterPorDocumento(domainEntity) is not null) return null;
+
+        return VendedorMapper.ToViewModel(_vendedorService.Put(domainEntity));
     }
 
-    public void Delete(VendedorViewModel vendedor)
+    public VendedorErrorViewModel RetornaVendedorJaExistente(VendedorViewModel vendedor)
     {
-        _vendedorService.Delete(VendedorMapper.ToDomain(vendedor));
+        return new(400, "Você esta tentando cadastrar um vendedor já existente na base")
+        {
+            RecursoExistente = vendedor
+        };
+    }
+
+    public void Delete(int idVendedor)
+    {
+        _vendedorService.Delete(idVendedor);
     }
 }

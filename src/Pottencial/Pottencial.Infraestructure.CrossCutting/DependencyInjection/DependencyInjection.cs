@@ -18,7 +18,7 @@ public static class DependencyInjection
 
         services.AddSingleton<IUsuarioRepository, UsuarioRepository>();
         services.AddSingleton<IVendedorRepository, VendedorRepository>();
-        services.AddSingleton<IVendaAppService, VendaAppService>();
+        services.AddSingleton<IVendaRepository, VendaRepository>();
 
         services.AddScoped<IUsuarioService, UsuarioService>();
         services.AddScoped<IVendedorService, VendedorService>();
@@ -26,7 +26,7 @@ public static class DependencyInjection
 
         services.AddScoped<IUsuarioAppService, UsuarioAppService>();
         services.AddScoped<IVendedorAppService, VendedorAppService>();
-        services.AddScoped<IVendaRepository, VendaRepository>();
+        services.AddScoped<IVendaAppService, VendaAppService>();
 
         return services;
     }

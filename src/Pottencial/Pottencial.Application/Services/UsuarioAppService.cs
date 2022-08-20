@@ -13,8 +13,10 @@ public class UsuarioAppService : IUsuarioAppService
         _usuarioService = usuarioService;
     }
 
-    public UsuarioLoginViewModel CriarUsuario(UsuarioLoginViewModel usuario)
+    public UsuarioLoginViewModel? CriarUsuario(UsuarioLoginViewModel usuario)
     {
+        if (String.IsNullOrEmpty(usuario.Email) || String.IsNullOrEmpty(usuario.Senha)) return null;
+
         return UsuarioMapper.ToViewModel(_usuarioService.CriarUsuario(UsuarioMapper.ToDomain(usuario)));
     }
 
