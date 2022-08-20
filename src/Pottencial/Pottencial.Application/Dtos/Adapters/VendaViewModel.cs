@@ -1,4 +1,4 @@
-﻿namespace Pottencial.Application.Dtos;
+﻿namespace Pottencial.Application.Dtos.Adapters;
 
 public class VendaViewModel : VendaPedidoViewModel
 {

@@ -1,6 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Pottencial.Application.Dtos.Base;
+using System.ComponentModel.DataAnnotations;
 
-namespace Pottencial.Application.Dtos;
+namespace Pottencial.Application.Dtos.Adapters;
 
 public class VendedorViewModel : BaseViewModel
 {

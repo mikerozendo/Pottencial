@@ -1,4 +1,4 @@
-﻿namespace Pottencial.Application.Dtos;
+﻿namespace Pottencial.Application.Dtos.Base;
 
 public class BaseViewModel
 {

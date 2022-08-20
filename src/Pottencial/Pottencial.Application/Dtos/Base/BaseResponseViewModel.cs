@@ -1,6 +1,6 @@
-﻿namespace Pottencial.Application.Dtos;
+﻿namespace Pottencial.Application.Dtos.Base;
 
-public class BaseResponseViewModel
+public abstract class BaseResponseViewModel
 {
     public int HttpStatus { get; set; }
     public string Mensagem { get; set; }

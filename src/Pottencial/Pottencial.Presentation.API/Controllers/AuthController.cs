@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Pottencial.Application.Dtos;
+using Pottencial.Application.Dtos.Adapters;
+using Pottencial.Application.Dtos.Reponses;
 using Pottencial.Application.Interfaces;
 using Pottencial.Infraestructure.CrossCutting.JWT.Interfaces;
 

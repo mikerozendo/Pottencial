@@ -1,4 +1,4 @@
-﻿using Pottencial.Application.Dtos;
+﻿using Pottencial.Application.Dtos.Adapters;
 
 namespace Pottencial.Application.Interfaces;
 

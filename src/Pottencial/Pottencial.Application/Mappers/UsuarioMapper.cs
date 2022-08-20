@@ -1,4 +1,4 @@
-﻿using Pottencial.Application.Dtos;
+﻿using Pottencial.Application.Dtos.Adapters;
 using Pottencial.Domain.Entities;
 
 namespace Pottencial.Application.Mappers;

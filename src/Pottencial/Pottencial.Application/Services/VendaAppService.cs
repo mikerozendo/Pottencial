@@ -1,8 +1,9 @@
-﻿using Pottencial.Application.Dtos;
-using Pottencial.Application.Interfaces;
+﻿using Pottencial.Application.Interfaces;
 using Pottencial.Application.Mappers;
 using Pottencial.Domain.Interfaces.Services;
 using Pottencial.Application.Utils;
+using Pottencial.Application.Dtos.Reponses;
+using Pottencial.Application.Dtos.Adapters;
 
 namespace Pottencial.Application.Services;
 

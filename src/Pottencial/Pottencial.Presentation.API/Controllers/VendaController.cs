@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Pottencial.Application.Dtos;
+using Pottencial.Application.Dtos.Adapters;
+using Pottencial.Application.Dtos.Reponses;
 using Pottencial.Application.Interfaces;
 
 namespace Pottencial.Presentation.API.Controllers;
