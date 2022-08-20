@@ -35,4 +35,9 @@ public class VendedorService : IVendedorService
     {
         _vendedorRepository.Remove(vendedor);
     }
+
+    public Vendedor? ObterPorDocumento(Vendedor vendedor)
+    {
+        return _vendedorRepository.ObterPorDocumento(vendedor);
+    }
 }

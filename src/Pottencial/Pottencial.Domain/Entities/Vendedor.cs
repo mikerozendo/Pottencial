@@ -1,7 +1,7 @@
-﻿namespace Pottencial.Domain.Entities
+﻿namespace Pottencial.Domain.Entities;
+
+public class Vendedor : Pessoa
 {
-    public class Vendedor : Pessoa
-    {
-        public Vendedor(string cpf) : base(cpf) { }
-    }
+    public List<Venda> Vendas { get; set; } = new();
+    public Vendedor(string cpf) : base(cpf) { }
 }
