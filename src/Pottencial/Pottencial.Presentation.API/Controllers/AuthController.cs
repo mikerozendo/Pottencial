@@ -23,6 +23,8 @@ public class AuthController : AppBaseController
     /// </summary>
     [HttpPost]
     [Route(nameof(Login))]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status200OK)]
     public IActionResult Login([FromBody] UsuarioLoginViewModel userLogin)
     {
         var authenticated = _usuarioAppService.Login(userLogin);
@@ -39,6 +41,8 @@ public class AuthController : AppBaseController
     /// </summary>
     [HttpPost]
     [Route(nameof(CriarUsuario))]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status201Created)]
     public IActionResult CriarUsuario([FromBody] UsuarioLoginViewModel userLogin)
     {
         var user = _usuarioAppService.CriarUsuario(userLogin);

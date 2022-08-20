@@ -17,6 +17,8 @@ public class VendaController : AppBaseController
     }
 
     [HttpGet]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
     public IActionResult Get([FromQuery] int pagina = 1)
     {
         var list = _vendaAppService.Get(pagina);
@@ -27,6 +29,8 @@ public class VendaController : AppBaseController
     }
 
     [HttpGet("{id}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public IActionResult GetById([FromRoute] int id)
     {
         var venda = _vendaAppService.GetByid(id);
@@ -37,6 +41,8 @@ public class VendaController : AppBaseController
     }
 
     [HttpPost]
+    [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public IActionResult Post([FromBody] VendaViewModel viewModel)
     {
         try
@@ -50,6 +56,8 @@ public class VendaController : AppBaseController
     }
 
     [HttpPatch("{id}")]
+    [ProducesResponseType(StatusCodes.Status202Accepted)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public IActionResult AlterarStatusVenda([FromRoute] int id, [FromQuery] int statusAlteracao)
     {
         try

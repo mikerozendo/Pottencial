@@ -16,7 +16,11 @@ public class VendedorController : AppBaseController
         _vendedorAppService = (IVendedorAppService)GetService(typeof(IVendedorAppService));
     }
 
+
     [HttpGet]
+    [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     public IActionResult Get()
     {
         var list = _vendedorAppService.Get().ToList();
@@ -28,6 +32,9 @@ public class VendedorController : AppBaseController
     }
 
     [HttpPost]
+    [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     public IActionResult Post([FromBody] VendedorViewModel vendedor)
     {
         try
@@ -42,6 +49,9 @@ public class VendedorController : AppBaseController
     }
 
     [HttpPut]
+    [ProducesResponseType(StatusCodes.Status202Accepted)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     public IActionResult Put([FromBody] VendedorViewModel vendedor)
     {
         try
@@ -56,6 +66,9 @@ public class VendedorController : AppBaseController
     }
 
     [HttpDelete]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     public IActionResult Delete([FromBody] VendedorViewModel vendedor)
     {
         _vendedorAppService.Delete(vendedor); return NoContent();
