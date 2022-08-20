@@ -64,7 +64,25 @@ public class VendaController : AppBaseController
     /// <summary>
     ///     Registra uma venda na base
     /// </summary>
-    /// <param name="vendaPedidoViewModel">Sistema verifica se vendedor já existe na base com base no documento do mesmo</param>
+    /// <remarks>
+    /// 
+    ///     Exemplo:
+    ///
+    ///     POST 
+    ///     {
+    ///       "produtoPreco": 447.32,
+    ///       "produtoQuantidade": 6, -- Quantiade deve ser maior que 0
+    ///       "produtoId": 2, -- Possíveis Ids de produto => Indefinido == 0, Calça jeans == 1, Bermuda jeans == 2, Camiseta == 3, Casaco corta-vento == 4, Jaqueta de couro == 5 
+    ///       "frete": 60,
+    ///       "vendedorNome": "", -- opcional caso vendedor já exista na base
+    ///       "vendedorCPF": "cpf valido com ou sem caracteres", -- Basta informar o CPF do vendedor que a venda ira cadastrar um novo na base caso o mesmo não exista;
+    ///       "vendedorEmail": "", -- opcional caso vendedor já exista na base
+    ///       "vendedorTelefone": "", -- opcional caso vendedor já exista na base
+    ///       "vendedorId": 1 -- não precisa informar, sistema irá atribuir Id de forma automatizada
+    ///     }
+    ///     
+    /// </remarks>
+    /// <param name="vendaPedidoViewModel">Sistema verifica se vendedor já existe na base com base no documento do mesmo, não precisa inserir demais informações</param>
     /// <returns>Retorna venda registrada e informações do vendedor</returns>
     /// <response code="201">Retorna venda registrada</response>
     /// <response code="400">Indica possível falha no cadastro do vendedor</response>
