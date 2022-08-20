@@ -88,8 +88,12 @@ public class VendedorController : AppBaseController
     {
         try
         {
-            var created = _vendedorAppService.Put(vendedor);
-            return Accepted(nameof(Put), created);
+            var resource = _vendedorAppService.Put(vendedor);
+
+            if(resource.GetType().Equals(typeof(VendedorPutSucessoViewModel))) return Accepted(nameof(Put), resource);
+
+            //Error viewModel result;
+            return NotFound(resource); 
         }
         catch (Exception ex)
         {

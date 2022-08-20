@@ -52,12 +52,19 @@ public class VendedorAppService : IVendedorAppService
         return VendedorMapper.ToViewModel(_vendedorService.Post(domainEntity));
     }
 
-    public VendedorViewModel? Put(VendedorViewModel vendedor)
+    public object Put(VendedorViewModel vendedor)
     {
         var domainEntity = VendedorMapper.ToDomain(vendedor);
-        if (_vendedorService.ObterPorDocumento(domainEntity) is not null) return null;
 
-        return VendedorMapper.ToViewModel(_vendedorService.Put(domainEntity));
+        if (_vendedorService.ObterPorDocumento(domainEntity) is not null)
+        {
+            return new VendedorPutSucessoViewModel(201, "Sucesso")
+            {
+                VendedorAlterado = VendedorMapper.ToViewModel(_vendedorService.Put(domainEntity))
+            };
+        }
+
+        return new ErrorViewModel(404, "Você esta tentando alterar um vendedor não existente na base de dados");
     }
 
     public void Delete(int idVendedor)

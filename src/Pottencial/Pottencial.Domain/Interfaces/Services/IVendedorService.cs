@@ -6,5 +6,5 @@ public interface IVendedorService : IBaseService<Vendedor>
 {
     Vendedor? ObterPorDocumento(Vendedor vendedor);
     void Delete(int idVendedor);
-    Vendedor? Put(Vendedor domainEntity);
+    Vendedor Put(Vendedor domainEntity);
 }
