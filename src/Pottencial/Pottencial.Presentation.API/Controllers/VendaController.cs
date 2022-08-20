@@ -28,4 +28,14 @@ public class VendaController : AppBaseController
             return BadRequest(ex.Message);
         }
     }
+
+    [HttpGet]
+    public IActionResult Get([FromQuery]int pagina = 1)
+    {
+        var list = _vendaAppService.Get(pagina);
+
+        if (list.Vendas.Any()) return Ok(list);
+
+        return NoContent();
+    }
 }

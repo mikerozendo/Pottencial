@@ -5,4 +5,5 @@ namespace Pottencial.Application.Interfaces;
 public interface IVendaAppService
 {
     VendaViewModel Post(VendaViewModel viewModel);
+    PaginacaoVendaViewModel Get(int pagina);
 }

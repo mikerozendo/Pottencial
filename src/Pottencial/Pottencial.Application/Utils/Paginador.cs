@@ -1,10 +1,9 @@
 ﻿using System.Globalization;
 
-namespace Pottencial.Domain.Entities.Utils;
-
+namespace Pottencial.Application.Utils;
 public class Paginador<T>
 {
-    public const int QuantidadeMaximaItens = 50;
+    public int QuantidadeMaximaItens => 50;
 
     public int ObterQuantidadePaginas(IEnumerable<T> listagem)
     {

@@ -1,17 +1,23 @@
 ﻿using Pottencial.Domain.Entities;
+using Pottencial.Domain.Interfaces.Repositories;
 using Pottencial.Domain.Interfaces.Services;
 
 namespace Pottencial.Domain.Services;
 
 public class VendaService : IVendaService
 {
-    private readonly IVendaService _vendaService;
+    private readonly IVendaRepository _vendaRepository;
     private readonly IVendedorService _vendedorService;
     
-    public VendaService(IVendaService vendaService, IVendedorService vendedorService)
+    public VendaService(IVendaRepository vendaRepository, IVendedorService vendedorService)
     {
-        _vendaService = vendaService;
+        _vendaRepository = vendaRepository;
         _vendedorService = vendedorService;
+    }
+
+    public IEnumerable<Venda> Get()
+    {
+        return _vendaRepository.Get();
     }
 
     public Venda Post(Venda venda)
@@ -21,6 +27,6 @@ public class VendaService : IVendaService
         if (vendedorExistente is null)
             _vendedorService.Post(venda.Vendedor);
 
-        return _vendaService.Post(venda);
+        return _vendaRepository.Post(venda);
     }
 }

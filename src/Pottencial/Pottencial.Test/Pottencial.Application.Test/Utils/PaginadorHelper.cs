@@ -1,4 +1,4 @@
-﻿namespace Pottencial.Test.Pottencial.Domain.Test.Utils;
+﻿namespace Pottencial.Test.Pottencial.Application.Test.Utils;
 
 public class PaginadorHelper
 {

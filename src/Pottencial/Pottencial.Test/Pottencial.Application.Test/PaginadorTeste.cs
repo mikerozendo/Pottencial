@@ -1,7 +1,7 @@
-﻿using Pottencial.Domain.Entities.Utils;
-using Pottencial.Test.Pottencial.Domain.Test.Utils;
+﻿using Pottencial.Application.Utils;
+using Pottencial.Test.Pottencial.Application.Test.Utils;
 
-namespace Pottencial.Test.Pottencial.Domain.Test;
+namespace Pottencial.Test.Pottencial.Application.Test;
 
 public class PaginadorTeste
 {
@@ -11,7 +11,7 @@ public class PaginadorTeste
         //Arrange
         var list = new PaginadorHelper().ObterMock();
         var paginador = new Paginador<string>();
-        
+
         //Act
         int paginas = paginador.ObterQuantidadePaginas(list);
 
@@ -44,5 +44,5 @@ public class PaginadorTeste
 
         //Assert
         Assert.Equal(1, paginas);
-    }   
+    }
 }
