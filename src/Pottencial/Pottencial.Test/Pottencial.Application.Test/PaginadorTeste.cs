@@ -16,7 +16,7 @@ public class PaginadorTeste
         int paginas = paginador.ObterQuantidadePaginas(list);
 
         //Assert
-        Assert.Equal(3, paginas);
+        Assert.Equal(4, paginas);
     }
 
     [Fact]
@@ -37,7 +37,7 @@ public class PaginadorTeste
     {
         //Arrange
         var paginador = new Paginador<string>();
-        var list = new PaginadorHelper().ObterMockMenor50();
+        var list = new PaginadorHelper().ObterMockMenor10();
 
         //Act
         int paginas = paginador.ObterQuantidadePaginas(list);

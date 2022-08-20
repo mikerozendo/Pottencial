@@ -1,6 +1,8 @@
-﻿using Pottencial.Application.Dtos;
+﻿using Pottencial.Application.Dtos.Adapters;
+using Pottencial.Application.Dtos.Reponses;
 using Pottencial.Application.Interfaces;
 using Pottencial.Application.Mappers;
+using Pottencial.Application.Utils;
 using Pottencial.Domain.Interfaces.Services;
 
 namespace Pottencial.Application.Services;
@@ -13,27 +15,61 @@ public class VendedorAppService : IVendedorAppService
         _vendedorService = vendedorService;
     }
 
-    public IEnumerable<VendedorViewModel> Get()
+    public PaginacaoVendedoresViewModel Get(string cpf = "", int id = 0, int pagina = 1)
     {
-        var vendedores = _vendedorService.Get();
+        var list = _vendedorService.Get(id).Select(VendedorMapper.ToViewModel);
 
-        if (vendedores is null) return new List<VendedorViewModel>();
+        if (list is null) return new();
 
-        return vendedores.Select(VendedorMapper.ToViewModel).ToList();
+        var helper = new Paginador<VendedorViewModel>();
+        int quantidadPaginas = helper.ObterQuantidadePaginas(list);
+
+        var vendedores = new PaginacaoVendedoresViewModel()
+        {
+            QuantidadePaginas = helper.ObterQuantidadePaginas(list),
+            Pagina = quantidadPaginas < pagina ? 0 : 1,
+            Vendedores = list
+                    .Where(x => String.IsNullOrEmpty(cpf) || x.Cpf.Contains(cpf))
+                    .Skip((pagina == 1 || quantidadPaginas < pagina) ? 0 : (pagina - 1) * helper.QuantidadeMaximaItens)
+                    .Take(helper.QuantidadeMaximaItens)
+                    .ToList()
+        };
+
+        return vendedores;
     }
 
-    public VendedorViewModel Post(VendedorViewModel vendedor)
+    public object Post(VendedorViewModel vendedor)
     {
-        return VendedorMapper.ToViewModel(_vendedorService.Post(VendedorMapper.ToDomain(vendedor)));
+        var domainEntity = VendedorMapper.ToDomain(vendedor);
+
+        if (_vendedorService.ObterPorDocumento(domainEntity) is not null)
+        {
+            return new VendedorErrorViewModel(400, "Você esta tentando cadastrar um vendedor já existente na base")
+            {
+                RecursoExistente = VendedorMapper.ToViewModel(domainEntity)
+            };
+        }
+
+        return VendedorMapper.ToViewModel(_vendedorService.Post(domainEntity));
     }
 
-    public VendedorViewModel Put(VendedorViewModel vendedor)
+    public object Put(VendedorViewModel vendedor)
     {
-        return VendedorMapper.ToViewModel(_vendedorService.Put(VendedorMapper.ToDomain(vendedor)));
+        var domainEntity = VendedorMapper.ToDomain(vendedor);
+
+        if (_vendedorService.ObterPorDocumento(domainEntity) is not null)
+        {
+            return new VendedorPutSucessoViewModel(202, "Alteração aceita!")
+            {
+                VendedorAlterado = VendedorMapper.ToViewModel(_vendedorService.Put(domainEntity))
+            };
+        }
+
+        return new ErrorViewModel(404, "Você esta tentando alterar um vendedor não existente na base de dados");
     }
 
-    public void Delete(VendedorViewModel vendedor)
+    public void Delete(int idVendedor)
     {
-        _vendedorService.Delete(VendedorMapper.ToDomain(vendedor));
+        _vendedorService.Delete(idVendedor);
     }
 }

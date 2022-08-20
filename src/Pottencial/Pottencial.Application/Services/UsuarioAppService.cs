@@ -1,4 +1,4 @@
-﻿using Pottencial.Application.Dtos;
+﻿using Pottencial.Application.Dtos.Adapters;
 using Pottencial.Application.Interfaces;
 using Pottencial.Application.Mappers;
 using Pottencial.Domain.Interfaces.Services;
@@ -13,8 +13,10 @@ public class UsuarioAppService : IUsuarioAppService
         _usuarioService = usuarioService;
     }
 
-    public UsuarioLoginViewModel CriarUsuario(UsuarioLoginViewModel usuario)
+    public UsuarioLoginViewModel? CriarUsuario(UsuarioLoginViewModel usuario)
     {
+        if (String.IsNullOrEmpty(usuario.Email) || String.IsNullOrEmpty(usuario.Senha)) return null;
+
         return UsuarioMapper.ToViewModel(_usuarioService.CriarUsuario(UsuarioMapper.ToDomain(usuario)));
     }
 

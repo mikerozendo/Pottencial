@@ -2,7 +2,4 @@
 
 namespace Pottencial.Domain.Interfaces.Repositories;
 
-public interface IVendaRepository : IBaseGetRepository<Venda>, IBaseCommandRepository<Venda>
-{
-    void RemovePorId(int id);
-}
+public interface IVendaRepository : IBaseQueryRepository<Venda>, IBaseCommandRepository<Venda> { }

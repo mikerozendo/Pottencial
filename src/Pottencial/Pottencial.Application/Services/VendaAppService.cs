@@ -1,8 +1,9 @@
-﻿using Pottencial.Application.Dtos;
-using Pottencial.Application.Interfaces;
+﻿using Pottencial.Application.Interfaces;
 using Pottencial.Application.Mappers;
 using Pottencial.Domain.Interfaces.Services;
 using Pottencial.Application.Utils;
+using Pottencial.Application.Dtos.Reponses;
+using Pottencial.Application.Dtos.Adapters;
 
 namespace Pottencial.Application.Services;
 
@@ -26,18 +27,18 @@ public class VendaAppService : IVendaAppService
         }
     }
 
-    public PaginacaoVendaViewModel Get(int pagina)
+    public PaginacaoVendaViewModel Get(int pagina = 1)
     {
         var list = _vendaService.Get().Select(VendaMapper.ToViewModel);
 
         var helper = new Paginador<VendaViewModel>();
-
+        int quantidadPaginas = helper.ObterQuantidadePaginas(list);
         var vendas = new PaginacaoVendaViewModel()
         {
-            QuantidadePaginas = helper.ObterQuantidadePaginas(list),
-            Pagina = pagina,
+            QuantidadePaginas = quantidadPaginas,
+            Pagina = quantidadPaginas < pagina ? 0 : 1,
             Vendas = list
-                    .Skip(pagina == 1 ? 0 : pagina * helper.QuantidadeMaximaItens)
+                    .Skip((pagina == 1 || quantidadPaginas < pagina ) ? 0 : (pagina - 1) * helper.QuantidadeMaximaItens)
                     .Take(helper.QuantidadeMaximaItens)
                     .ToList()
         };
@@ -47,15 +48,15 @@ public class VendaAppService : IVendaAppService
 
     public VendaViewModel? GetByid(int id)
     {
-        var venda = _vendaService.GetById(id);
+        var venda = _vendaService.Get(id).FirstOrDefault();
 
         if (venda is null) return null;
 
         return VendaMapper.ToViewModel(venda);
     }
 
-    public VendaViewModel Post(VendaViewModel viewModel)
+    public VendaViewModel Post(VendaPedidoViewModel viewModel)
     {
-        return VendaMapper.ToViewModel(_vendaService.Post(VendaMapper.ToDomain(viewModel)));
+        return VendaMapper.ToViewModel(_vendaService.Post(VendaPedidoMapper.ToDomain(viewModel)));
     }
 }

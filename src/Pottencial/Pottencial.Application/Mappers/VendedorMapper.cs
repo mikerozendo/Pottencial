@@ -1,4 +1,4 @@
-﻿using Pottencial.Application.Dtos;
+﻿using Pottencial.Application.Dtos.Adapters;
 using Pottencial.Domain.Entities;
 
 namespace Pottencial.Application.Mappers;
@@ -12,7 +12,8 @@ public static class VendedorMapper
         {
             Email = viewModel.Email,
             Nome = viewModel.Nome,
-            Telefone = viewModel.Telefone
+            Telefone = viewModel.Telefone,
+            Id = viewModel.Id
         };
     }
 
@@ -23,7 +24,8 @@ public static class VendedorMapper
             Email = domain.Email,
             Nome = domain.Nome,
             Telefone = domain.Telefone,
-            Cpf = domain.CPF.Cpf
+            Cpf = domain.CPF.Cpf,
+            Id = domain.Id
         };
     }
 }

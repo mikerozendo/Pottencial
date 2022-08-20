@@ -5,6 +5,7 @@ namespace Pottencial.Presentation.API.Controllers;
 public class AppBaseController : ControllerBase
 {
     protected readonly IServiceProvider _serviceProvider;
+
     public AppBaseController(IServiceProvider serviceProvider)
     {
         _serviceProvider = serviceProvider;
