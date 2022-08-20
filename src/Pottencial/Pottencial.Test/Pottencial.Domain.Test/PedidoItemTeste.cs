@@ -1,4 +1,5 @@
 ﻿using Pottencial.Domain.Entities;
+using Pottencial.Domain.Exceptions;
 
 namespace Pottencial.Test.Pottencial.Domain.Test;
 
@@ -51,5 +52,12 @@ public class PedidoItemTeste
         PedidoItem pedidoItem = new(1, 332, 7, 0);
 
         Assert.Equal(2324, pedidoItem.ValorTotal);
+    }
+
+
+    [Fact]
+    public void Testa_Pedido_Sem_Item_Exception()
+    {
+        Assert.Throws<VendaSemItensException>(() =>  new PedidoItem(1, 332, 0, 0));
     }
 }

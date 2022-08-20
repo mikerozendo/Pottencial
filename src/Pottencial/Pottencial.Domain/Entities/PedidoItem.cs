@@ -1,4 +1,6 @@
-﻿namespace Pottencial.Domain.Entities;
+﻿using Pottencial.Domain.Exceptions;
+
+namespace Pottencial.Domain.Entities;
 
 public class PedidoItem
 {
@@ -9,6 +11,8 @@ public class PedidoItem
 
     public PedidoItem(int idProduto, decimal valorProduto, int quantidade, decimal frete)
     {
+        if(quantidade <= 0) throw new VendaSemItensException();
+
         Item = new(idProduto, valorProduto);
         Quantidade = quantidade;
         Frete = frete;
