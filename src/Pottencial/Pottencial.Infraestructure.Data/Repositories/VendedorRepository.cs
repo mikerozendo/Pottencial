@@ -17,7 +17,7 @@ public class VendedorRepository : IVendedorRepository
     public Vendedor Post(Vendedor vendedor)
     {
         vendedores.Add(vendedor);
-        return vendedores.FirstOrDefault(vendedor);
+        return vendedores.Where(x => x.Id == vendedor.Id).FirstOrDefault();
     }
 
     public void Remove(Vendedor vendedor)
@@ -32,6 +32,6 @@ public class VendedorRepository : IVendedorRepository
 
     public int ObterQuantidade()
     {
-        return vendedores.Count;
+        return vendedores.Count > 0 ? vendedores.Max(x => x.Id) : 0;
     }
 }
