@@ -79,7 +79,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                  context.HandleResponse();
                  context.Response.StatusCode = 401;
                  context.Response.Headers.Append("authentication", "failed");
-                 await context.Response.WriteAsync($"Por favor se autentifique em api/Auth/");
+                 await context.Response.WriteAsync($"Por favor se identifique em api/Auth/");
              }
          };
      });

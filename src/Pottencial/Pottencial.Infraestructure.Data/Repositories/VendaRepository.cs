@@ -21,8 +21,8 @@ public class VendaRepository : IVendaRepository
     }
 
     public int ObterQuantidade()
-    {
-        return vendas.Count;
+    {    
+        return vendas.Count > 0 ? vendas.Max(x => x.Id) : 0;
     }
 
     public void Remove(Venda obj)
